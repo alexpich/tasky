@@ -1,13 +1,11 @@
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { MuiThemeProvider } from "@material-ui/core/styles";
+import Theme from "./theme";
 
 import Navbar from "../src/components/navbar/navbar";
 import Landing from "../src/components/landing/landing";
 import Dashboard from "../src/components/dashboard/dashboard";
-
-import Theme from "./theme";
-
 
 function App() {
   return (
