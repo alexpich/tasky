@@ -24,7 +24,7 @@ import com.alex.taskmanager.model.Task;
 import com.alex.taskmanager.service.TaskService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:3000")
 public class TaskController {
 
 	@Autowired

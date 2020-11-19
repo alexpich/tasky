@@ -19,7 +19,7 @@ import com.alex.taskmanager.model.User;
 import com.alex.taskmanager.service.UserService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:3000")
 public class UserController {
 
 	@Autowired
