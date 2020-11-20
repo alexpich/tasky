@@ -2,9 +2,9 @@ import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 
-import Navbar from "../src/components/navbar/navbar";
-import Landing from "../src/components/landing/landing";
-import Dashboard from "../src/components/dashboard/dashboard";
+import Navbar from "./components/navbar/Navbar";
+import Landing from "./components/landing/Landing";
+import Dashboard from "./components/dashboard/Dashboard";
 
 import Theme from "./theme";
 

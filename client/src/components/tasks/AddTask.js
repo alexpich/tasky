@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import FormControl from "@material-ui/core/FormControl";
 import Input from "@material-ui/core/Input";
+import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import Container from "@material-ui/core/Container";
@@ -22,48 +23,57 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const TaskForm = () => {
+const AddTask = () => {
   const classes = useStyles();
 
   const initialState = {
     task: "",
     category: "",
-    status: "In Progress",
+    status: "",
   };
   const [item, setItem] = useState(initialState);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleChange = (e) => {
+  const handleInputChange = (e) => {
     const { name, value } = e.target;
     setItem({ ...item, [name]: value });
-    // somehow "name" is blank
-    console.log(e.target.name);
-    console.log(e.target.value);
+  };
+
+  const handleSelectChange = (value, action) => {
+    setItem({
+      ...item,
+      [action.name]: value.value,
+    });
+    console.log(item);
   };
 
   const addTask = (e) => {
     // TODO: Call the task service and post
     e.preventDefault();
-
+    console.log(item);
     console.log("Task added.");
   };
 
   return (
     <Container>
-      <h3>Task Form</h3>
+      <h3>Add a Task</h3>
       <Form>
         <FormControl>
-          <Input placeholder="Task" onChange={handleChange} />
+          <InputLabel id="demo-simple-select-label">Task</InputLabel>
+          <Input type="text" name="task" onChange={handleInputChange} />
         </FormControl>
         <FormControl>
-          <Input placeholder="Category" onChange={handleChange} />
+          <InputLabel id="demo-simple-select-label">Category</InputLabel>
+          <Input type="text" name="category" onChange={handleInputChange} />
         </FormControl>
         <FormControl>
+          <InputLabel id="demo-simple-select-label">Status</InputLabel>
           <Select
             labelId="label"
             id="select"
-            value="In Progress"
-            onChange={handleChange}
+            name="status"
+            value={item.status}
+            onChange={handleInputChange}
           >
             <MenuItem value="In Progress">In Progress</MenuItem>
             <MenuItem value="Stuck">Stuck</MenuItem>
@@ -78,4 +88,4 @@ const TaskForm = () => {
   );
 };
 
-export default TaskForm;
+export default AddTask;
