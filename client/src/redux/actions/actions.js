@@ -1,13 +1,10 @@
+import axios from "axios";
 import { ADD_TASK, SET_FILTER } from "./actionTypes";
 
-export const addTask = (content) => ({
-  type: ADD_TASK,
-  payload: {
-    content,
-  },
-});
+export const addTask = (formProps) => (dispatch) => {
+  axios.post("http://localhost:8080/task", formProps);
+};
 
-export const setFilter = (filter) => ({
-  type: SET_FILTER,
-  payload: { filter },
-});
+export const getTasks = () => (dispatch) => {
+  axios.get("http://localhost:8080/task");
+};

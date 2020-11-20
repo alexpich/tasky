@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
+import { useDispatch, useSelector } from "react-redux";
+import * as actions from "../../redux/actions/actions";
+
 import FormControl from "@material-ui/core/FormControl";
 import Input from "@material-ui/core/Input";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -10,7 +13,7 @@ import Container from "@material-ui/core/Container";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/styles";
 
-const Form = styled.form`
+const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
   width: 200px;
@@ -23,8 +26,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AddTask = () => {
+const AddTask = (props) => {
   const classes = useStyles();
+  const dispatch = useDispatch();
 
   const initialState = {
     task: "",
@@ -39,25 +43,14 @@ const AddTask = () => {
     setItem({ ...item, [name]: value });
   };
 
-  const handleSelectChange = (value, action) => {
-    setItem({
-      ...item,
-      [action.name]: value.value,
-    });
-    console.log(item);
-  };
-
-  const addTask = (e) => {
+  const addTask = (formProps) => {
     // TODO: Call the task service and post
-    e.preventDefault();
-    console.log(item);
-    console.log("Task added.");
   };
 
   return (
     <Container>
       <h3>Add a Task</h3>
-      <Form>
+      <StyledForm>
         <FormControl>
           <InputLabel id="demo-simple-select-label">Task</InputLabel>
           <Input type="text" name="task" onChange={handleInputChange} />
@@ -80,10 +73,10 @@ const AddTask = () => {
             <MenuItem value="Done">Done</MenuItem>
           </Select>
         </FormControl>
-      </Form>
-      <Button variant="contained" color="primary" onClick={addTask}>
-        Add
-      </Button>
+        <Button variant="contained" color="primary" onClick={addTask}>
+          Add
+        </Button>
+      </StyledForm>
     </Container>
   );
 };
